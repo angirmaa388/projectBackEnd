@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import lombok.Data;
 /**
  *
@@ -32,8 +33,10 @@ public class Users {
     @Column(name = "user_name")
     private String userName;
     
+    @Email(message = "Invalid email")
     @Column(name = "email")
     private String email;
+    
     
     @Column(name = "user_password")
     private String password;

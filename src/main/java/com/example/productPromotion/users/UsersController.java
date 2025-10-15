@@ -4,6 +4,7 @@
  */
 package com.example.productPromotion.users;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,7 @@ public class UsersController {
         }
     
     @PostMapping
-        public void registerNewUsers(@RequestBody Users user){
+        public void registerNewUsers(@RequestBody @Valid Users user){
              usersService.addNewUsers(user);
         }
     

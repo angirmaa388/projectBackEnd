@@ -5,7 +5,9 @@
 package com.example.productPromotion.users;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +28,14 @@ public class UsersService {
         }
 
     public void addNewUsers(Users user) {
-        System.out.println(user);
+        Optional<Users> usersByEmail = usersRepository
+                .findUsersByEmail(user.getEmail());
+        if(usersByEmail.isPresent()){
+            throw new IllegalStateException("email already used");
+        }
+        
+        usersRepository.save(user);
+        
         
         }
     
