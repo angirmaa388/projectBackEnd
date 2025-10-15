@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 /**
  *
@@ -34,6 +35,7 @@ public class Users {
     private String userName;
     
     @Email(message = "Invalid email")
+    @NotBlank(message = "email required") 
     @Column(name = "email")
     private String email;
     

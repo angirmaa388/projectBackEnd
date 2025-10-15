@@ -38,5 +38,13 @@ public class UsersService {
         
         
         }
+
+    void deleteUsers(Long usersId) {
+        boolean exists = usersRepository.existsById(usersId);
+        if(!exists){
+            throw new IllegalStateException("id does not exists");
+        }
+        usersRepository.deleteById(usersId);
+        }
     
 }

@@ -7,7 +7,9 @@ package com.example.productPromotion.users;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +36,12 @@ public class UsersController {
     
     @PostMapping
         public void registerNewUsers(@RequestBody @Valid Users user){
+            System.out.println("Email:" + user.getEmail());
              usersService.addNewUsers(user);
         }
-    
+    @DeleteMapping(path = "{usersId}")
+    public void deleteUser(@PathVariable("usersId") Long usersId){
+        usersService.deleteUsers(usersId);
+        
+    }
 }
