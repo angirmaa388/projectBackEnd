@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.Table;
 import lombok.Data;
 /**
@@ -42,17 +43,9 @@ public class Users {
     
     //Constructor
 
-    public Users(Long id, 
-                         String userName, 
-                         String email, 
-                         String password, 
-                         String status) 
+    public Users() 
     {
-        this.id = id;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.status = status;
+        
     }
 
     public Users(String userName, 
