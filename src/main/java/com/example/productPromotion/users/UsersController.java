@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author angirmaa
  */
+@CrossOrigin(origins="")
 @RestController
 @RequestMapping(path = "api/v1/users")
 public class UsersController {
