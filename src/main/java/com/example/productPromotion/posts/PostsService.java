@@ -1,0 +1,28 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.example.productPromotion.posts;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ *
+ * @author angirmaa
+ */
+@Service
+public class PostsService {
+     private final PostsRepository postsRepository;
+    
+    @Autowired
+    public PostsService(PostsRepository postsRepository) {
+        this.postsRepository = postsRepository;
+    }
+    
+    public List<Posts> getPosts() {
+            return postsRepository.findAll();
+        }
+    
+} 
