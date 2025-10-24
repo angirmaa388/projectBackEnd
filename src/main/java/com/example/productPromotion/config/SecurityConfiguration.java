@@ -1,0 +1,9 @@
+package com.example.productPromotion.config;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SecurityConfiguration {
+
+
+}
