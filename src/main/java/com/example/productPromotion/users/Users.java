@@ -3,33 +3,46 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.example.productPromotion.users;
+import com.example.productPromotion.posts.Posts;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import java.util.Collection;
+import java.util.List;
+
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 /**
  *
  * @author angirmaa
  */
+
 @Entity
 @Data
  //Giving the table name
 @Table (name = "users")
 
-public class Users {
+
+public class Users implements UserDetails{
     //Declaring variables 
     // Giving the column name 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     @Column(name = "user_id") //for all the columns giving a name that same as sql data column name 
-    private Long id;
+    private Long userId;
     
     @Column(name = "user_name")
     private String userName;
@@ -45,6 +58,10 @@ public class Users {
     
     @Column(name = "user_status")
     private String status;
+    
+    
+    @OneToMany(mappedBy="users")
+    private List<Posts>posts; 
     
     //Constructor
 
@@ -67,13 +84,22 @@ public class Users {
     
     //getters and setters 
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
+
+    public List<Posts> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Posts> posts) {
+        this.posts = posts;
+    }
+    
 
     public String getUserName() {
         return userName;
@@ -90,15 +116,6 @@ public class Users {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -106,6 +123,53 @@ public class Users {
     public void setStatus(String status) {
         this.status = status;
     }
+//To string 
+    @Enumerated(EnumType.STRING)
+    //it will take the string value of the enum 
+    private Role role;
 
+    @Override
+    public String toString() {
+        return "Users{" + "userId=" + userId + ", userName=" + userName + ", email=" + email + ", password=" + password + ", status=" + status + ", posts=" + posts + '}';
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name())); 
+        }
+
+    @Override
+    public String getUsername() {
+        return email; 
+        }
+     
+   
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+
+       }
+    
     
 }

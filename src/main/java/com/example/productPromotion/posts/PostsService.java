@@ -5,6 +5,7 @@
 package com.example.productPromotion.posts;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PostsService {
      private final PostsRepository postsRepository;
+   
+    
     
     @Autowired
     public PostsService(PostsRepository postsRepository) {
@@ -28,4 +31,6 @@ public class PostsService {
     public Posts addNewPosts(Posts posts) {
         return postsRepository.save(posts);
        }
+    
+   
 } 

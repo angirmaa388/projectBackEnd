@@ -5,6 +5,7 @@
 package com.example.productPromotion.posts;
 
 import com.example.productPromotion.users.Users;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Posts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     @Column(name = "post_id") //for all the columns giving a name that same as sql data column name 
-    private Long id;
+    private Long postId;
     
     @Column(name = "post_text")
     private String postText;
@@ -52,6 +53,7 @@ public class Posts {
     
     //one customer can have many posts 
     //so identified this relations
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
     //here joining the column 
     @JoinColumn(name = "user_id")
@@ -63,7 +65,8 @@ public class Posts {
         
     }
 
-    public Posts(String postText, String filePath, String fileType, LocalDateTime postedDateTime, Users users) {
+    public Posts( String postText, String filePath, String fileType, LocalDateTime postedDateTime, Users users) {
+        
         this.postText = postText;
         this.filePath = filePath;
         this.fileType = fileType;
@@ -71,14 +74,15 @@ public class Posts {
         this.users = users;
     }
 
-    //Getters and setters
-
-    public Long getId() {
-        return id;
+   
+    
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    //Getters and setters
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public String getPostText() {
@@ -122,11 +126,12 @@ public class Posts {
     }
 
     //To string 
+
     @Override
     public String toString() {
-        return "Posts{" + "id=" + id + ", postText=" + postText + ", filePath=" + filePath + ", fileType=" + fileType + ", postedDateTime=" + postedDateTime + ", users=" + users + '}';
+        return "Posts{" + "postId=" + postId + ", postText=" + postText + ", filePath=" + filePath + ", fileType=" + fileType + ", postedDateTime=" + postedDateTime + ", users=" + users + '}';
     }
-    
+
     
     
 }

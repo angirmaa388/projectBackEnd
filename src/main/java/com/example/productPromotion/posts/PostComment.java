@@ -31,7 +31,7 @@ public class PostComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     @Column(name = "post_comment_id") //for all the columns giving a name that same as sql data column name 
-    private Long id;
+    private Long postCommentId;
     
     @Column(name = "comment_text")
     private String commentText;
@@ -68,14 +68,15 @@ public class PostComment {
     
     //Getters and setters 
 
-    public Long getId() {
-        return id;
+    public Long getPostCommentId() {
+        return postCommentId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPostCommentId(Long postCommentId) {
+        this.postCommentId = postCommentId;
     }
 
+    
     public String getCommentText() {
         return commentText;
     }
@@ -112,8 +113,9 @@ public class PostComment {
 
     @Override
     public String toString() {
-        return "PostComment{" + "id=" + id + ", commentText=" + commentText + ", commentedDateTime=" + commentedDateTime + ", posts=" + posts + ", users=" + users + '}';
+        return "PostComment{" + "postCommentId=" + postCommentId + ", commentText=" + commentText + ", commentedDateTime=" + commentedDateTime + ", posts=" + posts + ", users=" + users + '}';
     }
+
     
     
 }

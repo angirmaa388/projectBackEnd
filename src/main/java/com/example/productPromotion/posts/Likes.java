@@ -30,7 +30,7 @@ public class Likes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     @Column(name = "post_like_id") //for all the columns giving a name that same as sql data column name 
-    private Long id;
+    private Long likesId;
     
     @Column(name ="liked_time")
     private LocalDateTime likedDateTime;
@@ -63,13 +63,14 @@ public class Likes {
     
     //Getters and setters 
 
-    public Long getId() {
-        return id;
+    public Long getLikesId() {
+        return likesId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setLikesId(Long likesId) {
+        this.likesId = likesId;
     }
+
 
     public LocalDateTime getLikedDateTime() {
         return likedDateTime;
@@ -99,8 +100,10 @@ public class Likes {
 
     @Override
     public String toString() {
-        return "Likes{" + "id=" + id + ", likedDateTime=" + likedDateTime + ", posts=" + posts + ", users=" + users + '}';
+        return "Likes{" + "likesId=" + likesId + ", likedDateTime=" + likedDateTime + ", posts=" + posts + ", users=" + users + '}';
     }
+
+    
     
    
     
