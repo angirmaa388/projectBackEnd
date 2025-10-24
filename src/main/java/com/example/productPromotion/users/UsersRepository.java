@@ -19,5 +19,7 @@ public interface UsersRepository
     
    @Query("SELECT u FROM Users u WHERE u.email = ?1")
    Optional<Users> findUsersByEmail(String email);
+   
+   Optional<Users> findByEmail(String email);
     
 }
