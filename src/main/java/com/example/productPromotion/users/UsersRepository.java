@@ -21,5 +21,4 @@ public interface UsersRepository
    Optional<Users> findUsersByEmail(String email);
    
    Optional<Users> findByEmail(String email);
-    
 }

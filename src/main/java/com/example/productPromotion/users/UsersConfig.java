@@ -22,21 +22,21 @@ public class UsersConfig {
         return args -> {
             
             if(repository.count() == 0) {
-            Users Angirmaa = new Users(
+        //     Users Angirmaa = new Users(
                     
-                    "Angirmaa",
-                    "angirmaa388@gmail.com",
-                    "Angirmaa123",
-                    "user"
-            );
-            Users Adam = new Users(
-                    "Adam",
-                    "angirmaa388@gmail.com",
-                    "Angirmaa123",
-                    "user"
-            );
-            repository.saveAll(List.of(Angirmaa,Adam)
-            );
+        //             "Angirmaa",
+        //             "angirmaa388@gmail.com",
+        //             "Angirmaa123",
+        //             "user"
+        //     );
+        //     Users Adam = new Users(
+        //             "Adam",
+        //             "angirmaa388@gmail.com",
+        //             "Angirmaa123",
+        //             "user"
+        //     );
+        //     repository.saveAll(List.of(Angirmaa,Adam)
+        //     );
             
             }
     }; 

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author angirmaa
  */
-@CrossOrigin(origins="http://127.0.0.1:5500")
+@CrossOrigin(origins={"http://127.0.0.1:6500", "http://localhost:6500"})
 @RestController
 @RequestMapping(path = "api/v1/users")
 public class UsersController {
@@ -48,16 +48,6 @@ public class UsersController {
     @DeleteMapping(path = "{usersId}")
     public void deleteUser(@PathVariable("usersId") Long usersId){
         usersService.deleteUsers(usersId);
-        
-    }
-    
-    @PostMapping("/login")
-    public ResponseEntity<Users>logIn(@RequestBody LogIn logIn){
-        Users users = usersService.FindByEmail(logIn.getEmail());
-        if(users != null && users.getPassword().equals(logIn.getPassword())){
-            return ResponseEntity.ok(users);
-        }else 
-            return ResponseEntity.status(401).build();
         
     }
     

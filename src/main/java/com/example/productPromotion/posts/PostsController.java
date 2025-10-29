@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
  *
  * @author angirmaa
  */
-@CrossOrigin(origins="http://127.0.0.1:6500/")
+@CrossOrigin(origins={"http://127.0.0.1:6500", "http://localhost:6500"})
 @RestController
 @RequestMapping(path = "api/v1/posts")
 public class PostsController {
@@ -38,7 +38,7 @@ public class PostsController {
     
     
     @GetMapping
-        public List<Posts> getPosts() {
+        public List<PostResponse> getPosts() {
            return postsService.getPosts();
         }
 
@@ -56,6 +56,8 @@ public class PostsController {
         
         }else {
               posts.setPostText(postText);
+              posts.setFilePath(null);
+              posts.setFileType(null);
           
           }
          Users user = usersRepository.findById(userId).orElse(null);

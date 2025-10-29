@@ -9,7 +9,7 @@ package com.example.productPromotion.users;
  * @author angirmaa
  */
 public enum Role {
-    USER, 
-    ADMIN
+    ROLE_USER, 
+    ROLE_ADMIN
     
 }

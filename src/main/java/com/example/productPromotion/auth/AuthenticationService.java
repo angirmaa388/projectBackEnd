@@ -2,7 +2,6 @@ package com.example.productPromotion.auth;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +29,13 @@ public class AuthenticationService {
             .userName(request.getUserName())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
-            .role(Role.USER)
+            .role(Role.ROLE_USER)
             .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
             .token(jwtToken)
+            .userId(user.getUserId())
             .build();
     }
     public AuthenticationResponse authenticate(AuthenticationRequest request){
@@ -57,6 +57,7 @@ public class AuthenticationService {
                 var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
             .token(jwtToken)
+            .userId(user.getUserId())
             .build();
         
     }

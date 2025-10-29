@@ -40,8 +40,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table (name = "users")
 @Builder
 @AllArgsConstructor
-
+@NoArgsConstructor
 public class Users implements UserDetails{
+
+    
     //Declaring variables 
     // Giving the column name 
     @Id
@@ -71,21 +73,21 @@ public class Users implements UserDetails{
     
     //Constructor
 
-    public Users() 
-    {
+    // public Users() 
+    // {
         
-    }
+    // }
 
-    public Users(String userName, 
-                         String email, 
-                         String password, 
-                         String status) 
-    {
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.status = status;
-    }
+    // public Users(String userName, 
+    //                      String email, 
+    //                      String password, 
+    //                      String status) 
+    // {
+    //     this.userName = userName;
+    //     this.email = email;
+    //     this.password = password;
+    //     this.status = status;
+    // }
     
     
     //getters and setters 

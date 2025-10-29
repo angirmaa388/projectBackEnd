@@ -3,6 +3,7 @@ package com.example.productPromotion.config;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HexFormat;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -51,6 +52,7 @@ public class JwtService {
     //it will validate the token ]
     public boolean isTokenValid(String token, UserDetails userDetails ){
         final String userName = extractUserName(token);
+        System.out.println("Decoded email from token: " + userName);
         return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
     private boolean isTokenExpired(String token){
@@ -72,7 +74,7 @@ public class JwtService {
         .getBody();
     }
     private Key getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+        byte[] keyBytes = HexFormat.of().parseHex(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
        }
 

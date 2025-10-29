@@ -24,8 +24,16 @@ public class PostsService {
         this.postsRepository = postsRepository;
     }
     
-    public List<Posts> getPosts() {
-            return postsRepository.findAll();
+    public List<PostResponse> getPosts() {
+            return postsRepository.findAll().stream().map(posts -> new PostResponse(
+                posts.getPostId(),
+                posts.getPostText(),
+                posts.getFilePath(),
+                posts.getFileType(),
+                posts.getUsers().getUserName(),
+                posts.getPostedDateTime() != null ? posts.getPostedDateTime().toString(): null
+            ))
+            .toList();
         }
 
     public Posts addNewPosts(Posts posts) {
