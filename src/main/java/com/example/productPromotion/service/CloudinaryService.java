@@ -6,9 +6,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 
+import lombok.RequiredArgsConstructor;
+
 import java.io.IOException;
 
 @Service
+@RequiredArgsConstructor
+@SuppressWarnings("unchecked")
 public class CloudinaryService {
     @Autowired
     private Cloudinary cloudinary;

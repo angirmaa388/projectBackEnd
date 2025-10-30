@@ -4,6 +4,7 @@
  */
 package com.example.productPromotion.posts;
 
+import com.example.productPromotion.service.CloudinaryService;
 import com.example.productPromotion.users.Users;
 import com.example.productPromotion.users.UsersRepository;
 import java.time.LocalDateTime;
@@ -31,13 +32,14 @@ import org.springframework.web.util.UriComponents;
 @RequestMapping(path = "api/v1/posts")
 public class PostsController {
     private final PostsService postsService;
+    
+
     @Autowired 
     private UsersRepository usersRepository;
     @Autowired
     public PostsController(PostsService postsService) {
         this.postsService = postsService;
     }
-    
     
     @GetMapping
         public List<PostResponse> getPosts() {
@@ -52,17 +54,13 @@ public class PostsController {
                 @RequestParam(value = "file",required = false) MultipartFile file,
                 @RequestParam(value = "userId") Long userId,
 			Posts posts) {
-            
        
-
           if(file != null && !file.isEmpty()){
-        posts.setFilePath(file.getOriginalFilename());
-        posts.setFileType(file.getContentType());
- UriComponents uriComponents = ServletUriComponentsBuilder.fromCurrentContextPath()
-     .path(posts.getFilePath()).buildAndExpand();
-    String url = uriComponents.toUriString();
-    posts.setFilePath(url);
+        String fileUrl= postsService.uploadFile(file, file.getOriginalFilename());
         
+        posts.setFilePath(fileUrl);
+        posts.setFileType(file.getContentType());
+    
         }else {
               
               posts.setFilePath(null);
@@ -75,6 +73,7 @@ public class PostsController {
          postsService.addNewPosts(posts);
          return ResponseEntity.ok("post submitted");
 	}
-     
+
+    
   
 }
