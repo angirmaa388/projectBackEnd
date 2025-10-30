@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponents;
 
 /**
  *
@@ -40,6 +42,8 @@ public class PostsController {
     @GetMapping
         public List<PostResponse> getPosts() {
            return postsService.getPosts();
+            
+   
         }
 
     @PostMapping
@@ -49,23 +53,28 @@ public class PostsController {
                 @RequestParam(value = "userId") Long userId,
 			Posts posts) {
             
-            
+       
+
           if(file != null && !file.isEmpty()){
         posts.setFilePath(file.getOriginalFilename());
         posts.setFileType(file.getContentType());
+ UriComponents uriComponents = ServletUriComponentsBuilder.fromCurrentContextPath()
+     .path(posts.getFilePath()).buildAndExpand();
+    String url = uriComponents.toUriString();
+    posts.setFilePath(url);
         
         }else {
-              posts.setPostText(postText);
+              
               posts.setFilePath(null);
               posts.setFileType(null);
-          
           }
+          posts.setPostText(postText);
          Users user = usersRepository.findById(userId).orElse(null);
          posts.setUsers(user);
          posts.setPostedDateTime(LocalDateTime.now());
          postsService.addNewPosts(posts);
          return ResponseEntity.ok("post submitted");
 	}
-
+     
   
 }

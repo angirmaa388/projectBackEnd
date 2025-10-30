@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponents;
 
 /**
  *
@@ -24,6 +26,7 @@ public class PostsService {
         this.postsRepository = postsRepository;
     }
     
+
     public List<PostResponse> getPosts() {
             return postsRepository.findAll().stream().map(posts -> new PostResponse(
                 posts.getPostId(),

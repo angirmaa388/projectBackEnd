@@ -1,5 +1,8 @@
 package com.example.productPromotion.posts;
 
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponents;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +16,8 @@ public class PostResponse {
    private String postText;
    private String filePath;
    private String fileType;
-   private String postedDateTime;
    private String userName;
+   private String postedDateTime;
+
+    
 }
