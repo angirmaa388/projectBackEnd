@@ -12,5 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface LikesRepository 
         extends JpaRepository <Likes, Long>  {
+
+        Long countByPosts_PostId(Long postId);
     
 }

@@ -21,9 +21,13 @@ public class PostCommentService {
         this.postCommentRepository = postCommentRepository;
     }
     
-    public List<PostComment> getPosts() {
+    public List<PostComment> getPostComment() {
             return postCommentRepository.findAll();
         }
+
+    public PostComment addNewPostComment(PostComment postComment) {
+        return postCommentRepository.save(postComment);
+         }
 
     
     

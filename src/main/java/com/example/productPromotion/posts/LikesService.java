@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LikesService {
+     
      private final LikesRepository likesRepository;
      
      @Autowired
@@ -25,5 +26,14 @@ public class LikesService {
         public List<Likes> getLikes() {
             return likesRepository.findAll();
         }
+
+        public Long likesAmount(Long postId) {
+            return likesRepository.countByPosts_PostId(postId);
+
+             }
+
+        public Likes addNewLikes(Likes likes) {
+            return likesRepository.save(likes);
+            }
     
 }

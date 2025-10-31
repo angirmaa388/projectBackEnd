@@ -24,8 +24,7 @@ import com.cloudinary.Cloudinary;
 @SuppressWarnings("unchecked")
 public class PostsService {
      private final PostsRepository postsRepository;
-   
-    
+
     
     @Autowired
     public PostsService(PostsRepository postsRepository) {
