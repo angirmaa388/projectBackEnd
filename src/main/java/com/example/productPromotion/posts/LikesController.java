@@ -51,8 +51,8 @@ public class LikesController {
          return likesService.addNewLikes(likes);
 	}
 
-     @PostMapping("/likesCount")
-	public Long likesAmount(@RequestBody Long postsId){
+     @GetMapping("/likesCount")
+	public Long likesAmount(@RequestParam Long postsId){
                 System.out.println("PostId:" + postsId);
          return likesService.likesAmount(postsId);
 	}

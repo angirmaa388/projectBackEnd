@@ -38,7 +38,8 @@ public class SecurityConfiguration {
             .permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/posts/**", "/api/v1/likes/**")
             .permitAll()
-            .requestMatchers(HttpMethod.POST, "/api/v1/posts/**", "/api/v1/likes/**").authenticated()
+            .requestMatchers(HttpMethod.POST, "/api/v1/posts/**", "/api/v1/likes/",
+            "/api/v1/likes/newLikes/" ).authenticated()
             .anyRequest()
             .authenticated())
             .sessionManagement(session ->
