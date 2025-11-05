@@ -50,7 +50,4 @@ public class PostCommentController {
         postComment.setCommentedDateTime(LocalDateTime.now()); 
          return postCommentService.addNewPostComment(postComment);
 	}
-
-  
-
 }
