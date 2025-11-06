@@ -16,6 +16,10 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import com.example.productPromotion.users.UsersRepository;
 
 import lombok.RequiredArgsConstructor;
+/**
+ *
+ * @author angirmaa
+ */
 
 @Configuration
 @RequiredArgsConstructor

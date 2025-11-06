@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.productPromotion.users.Users;
 import com.example.productPromotion.users.UsersRepository;
+/**
+ *
+ * @author angirmaa
+ */
 
 @CrossOrigin(origins={"http://127.0.0.1:6500", "http://localhost:6500"})
 @RestController
@@ -34,13 +39,16 @@ public class PostCommentController {
 
   
     
-    @GetMapping
-        public List<PostComment> gePostComments() {
-           return postCommentService.getPostComment();
+    @GetMapping("/getPostComment")
+        public List<PostCommentResponse> gePostComments(@RequestParam Long postId) {
+           return postCommentService.getPostComment(postId);
         }
 
      @PostMapping("/newComment")
-	public PostComment newPostComment(@RequestParam Long postId, @RequestParam Long userId, @RequestParam String commentText){
+	public ResponseEntity<String> newPostComment(
+        @RequestParam Long postId, 
+        @RequestParam Long userId, 
+        @RequestParam String commentText){
         Posts post = postsRepository.findById(postId).orElse(null);
         Users user = usersRepository.findById(userId).orElse(null);
         PostComment postComment = new PostComment();
@@ -48,6 +56,8 @@ public class PostCommentController {
         postComment.setPosts(post);
         postComment.setUsers(user);
         postComment.setCommentedDateTime(LocalDateTime.now()); 
-         return postCommentService.addNewPostComment(postComment);
+        postCommentService.addNewPostComment(postComment);
+         return ResponseEntity.ok("post submitted");
+
 	}
 }

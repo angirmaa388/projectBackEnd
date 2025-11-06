@@ -16,7 +16,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoder;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-
+/**
+ *
+ * @author angirmaa
+ */
 @Service
 public class JwtService {
     private static final String SECRET_KEY = "02140751d096413d0f2fa8535f3a73ca55c842f8d2a56dc8f250340d3b14668d";

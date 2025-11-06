@@ -15,6 +15,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import lombok.RequiredArgsConstructor;
+/**
+ *
+ * @author angirmaa
+ */
 
 @Configuration
 @EnableWebSecurity
@@ -36,9 +40,9 @@ public class SecurityConfiguration {
             auth.requestMatchers("/api/v1/auth/**", "/api/v1/users/**", "/api/v1/users/login/**")
             //permitting all the URL that allows the information
             .permitAll()
-            .requestMatchers(HttpMethod.GET, "/api/v1/posts/**", "/api/v1/likes/**")
+            .requestMatchers(HttpMethod.GET, "/api/v1/posts/**", "/api/v1/likes/**", "api/v1/postComment/**")
             .permitAll()
-            .requestMatchers(HttpMethod.POST, "/api/v1/posts/**", "/api/v1/likes/**").authenticated()
+            .requestMatchers(HttpMethod.POST, "/api/v1/posts/**", "/api/v1/likes/**", "api/v1/postComment/**").authenticated()
             .anyRequest()
             .authenticated())
             .sessionManagement(session ->

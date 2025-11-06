@@ -5,6 +5,8 @@
 package com.example.productPromotion.posts;
 
 import com.example.productPromotion.users.Users;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,6 +46,7 @@ public class PostComment {
     @ManyToOne
     //here joining the column 
     @JoinColumn(name = "post_id")
+    @JsonBackReference
     private Posts posts;
     
     //one user can have many comments 
@@ -51,7 +54,9 @@ public class PostComment {
     @ManyToOne
     //here joining the column 
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private Users users;
+    
     
     //Constructor
 

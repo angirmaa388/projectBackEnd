@@ -5,6 +5,8 @@
 package com.example.productPromotion.posts;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +23,23 @@ public class PostCommentService {
         this.postCommentRepository = postCommentRepository;
     }
     
-    public List<PostComment> getPostComment() {
-            return postCommentRepository.findAll();
+    public List<PostCommentResponse> getPostComment(Long postId) {
+            return postCommentRepository.findAllByPosts_PostId(postId).stream().map(postComment -> new PostCommentResponse(
+                postComment.getPostCommentId(),
+                postComment.getCommentText(),
+                postComment.getUsers().getUserName(),
+                postComment.getCommentedDateTime() != null ? postComment.getCommentedDateTime().toString(): null
+            ))
+            .toList();
         }
 
     public PostComment addNewPostComment(PostComment postComment) {
         return postCommentRepository.save(postComment);
          }
+
+    
+
+    
 
     
     

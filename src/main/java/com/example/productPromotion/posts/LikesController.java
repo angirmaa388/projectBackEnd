@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.productPromotion.users.Users;
 import com.example.productPromotion.users.UsersRepository;
+/**
+ *
+ * @author angirmaa
+ */
 
 @CrossOrigin(origins={"http://127.0.0.1:6500", "http://localhost:6500"})
 @RestController
