@@ -1,11 +1,15 @@
 package com.example.productPromotion.auth;
 
+import java.util.List;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.productPromotion.config.JwtService;
+import com.example.productPromotion.config.Token;
+import com.example.productPromotion.config.TokenRepository;
 import com.example.productPromotion.users.Role;
 import com.example.productPromotion.users.Users;
 import com.example.productPromotion.users.UsersRepository;
@@ -21,6 +25,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final TokenRepository tokenRepository;
 
     public AuthenticationResponse register(RegisterRequest request){
         // here all the user register metods 
@@ -55,11 +60,31 @@ public class AuthenticationService {
         //and send the authentication response 
 
                 var jwtToken = jwtService.generateToken(user);
+            //Save the generated token 
+            revokeAllTokenByUser(user);
+            saveUserToken(user, jwtToken);
+
         return AuthenticationResponse.builder()
             .token(jwtToken)
             .userId(user.getUserId())
             .build();
         
+    }
+    private void revokeAllTokenByUser(Users user) {
+        List<Token> validTokenListByUser = tokenRepository.findAllTokenByUser(user.getUserId());
+        if(!validTokenListByUser.isEmpty()){
+            validTokenListByUser.forEach(t->{
+                t.setLoggedOut(true);
+            });
+        }
+        tokenRepository.saveAll(validTokenListByUser);
+    }
+    private void saveUserToken(Users user, String jwtToken) {
+        Token token = new Token();
+        token.setToken(jwtToken);
+        token.setLoggedOut(false);
+        token.setUsers(user);
+        tokenRepository.save(token);
     }
 
 

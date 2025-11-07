@@ -18,6 +18,7 @@ import com.example.productPromotion.users.UsersRepository;
  * @author angirmaa
  */
 
+
 @CrossOrigin(origins={"http://127.0.0.1:6500", "http://localhost:6500"})
 @RestController
 @RequestMapping(path = "api/v1/likes")

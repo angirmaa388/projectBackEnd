@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.example.productPromotion.users;
+import com.example.productPromotion.config.Token;
 import com.example.productPromotion.posts.Posts;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -70,6 +71,9 @@ public class Users implements UserDetails{
     
     @OneToMany(mappedBy="users")
     private List<Posts>posts; 
+
+    @OneToMany(mappedBy="users")
+    private List<Token>token; 
     
     //Constructor
 
@@ -131,6 +135,23 @@ public class Users implements UserDetails{
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public List<Token> getToken() {
+        return token;
+    }
+
+    public void setToken(List<Token> token) {
+        this.token = token;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+    
 //To string 
     @Enumerated(EnumType.STRING)
     //it will take the string value of the enum 

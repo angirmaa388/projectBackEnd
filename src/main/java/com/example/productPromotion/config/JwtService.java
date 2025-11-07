@@ -22,7 +22,17 @@ import io.jsonwebtoken.security.Keys;
  */
 @Service
 public class JwtService {
+
+    
     private static final String SECRET_KEY = "02140751d096413d0f2fa8535f3a73ca55c842f8d2a56dc8f250340d3b14668d";
+
+    private final TokenRepository tokenRepository;
+
+    public JwtService(TokenRepository tokenRepository) {
+        this.tokenRepository = tokenRepository;
+    }
+
+    
     public String extractUserName(String token){
         return extractClaim(token, Claims:: getSubject);
         //it will take the user name 
@@ -55,9 +65,13 @@ public class JwtService {
     //it will validate the token ]
     public boolean isTokenValid(String token, UserDetails userDetails ){
         final String userName = extractUserName(token);
+        boolean isTokenValid = tokenRepository.findByToken(token)
+                                .map(t->!t.isLoggedOut())
+                                .orElse(false);
         System.out.println("Decoded email from token: " + userName);
-        return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
+        return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token) && isTokenValid;
     }
+
     private boolean isTokenExpired(String token){
         return extractExpiration(token).before(new Date());
     }
