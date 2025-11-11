@@ -6,6 +6,7 @@ package com.example.productPromotion.users;
 
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties.Authentication;
@@ -18,7 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.productPromotion.posts.PostCommentResponse;
 
 /**
  *
@@ -39,6 +43,19 @@ public class UsersController {
         public List<Users> getUsers() {
            return usersService.getUsers();
         }
+
+    @GetMapping("/{userId}")
+    public UsersResponse getUser(@PathVariable Long userId) {
+    Users user = usersService.getUserById(userId)
+                             .orElseThrow(() -> new RuntimeException("User not found"));
+    return new UsersResponse(
+        user.getUserId(),
+        user.getUserName(), 
+        user.getEmail(), 
+        user.getStatus());
+}
+   
+
     
     @PostMapping
         public void registerNewUsers(@RequestBody @Valid Users user){

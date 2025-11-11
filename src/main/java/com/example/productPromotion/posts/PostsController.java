@@ -47,7 +47,6 @@ public class PostsController {
             
    
         }
-
     @PostMapping
 	public ResponseEntity<String> createPost(
                 @RequestParam(value = "postText", required = false) String postText, 

@@ -24,12 +24,16 @@ import com.cloudinary.Cloudinary;
 @SuppressWarnings("unchecked")
 public class PostsService {
      private final PostsRepository postsRepository;
+     private final LikesService likesService;
 
     
     @Autowired
-    public PostsService(PostsRepository postsRepository) {
+  
+    public PostsService(PostsRepository postsRepository, LikesService likesService) {
         this.postsRepository = postsRepository;
+        this.likesService = likesService;
     }
+    
     
 
     public List<PostResponse> getPosts() {
@@ -39,7 +43,8 @@ public class PostsService {
                 posts.getFilePath(),
                 posts.getFileType(),
                 posts.getUsers().getUserName(),
-                posts.getPostedDateTime() != null ? posts.getPostedDateTime().toString(): null
+                posts.getPostedDateTime() != null ? posts.getPostedDateTime().toString(): null,
+                likesService.likesAmount(posts.getPostId())
             ))
             .toList();
         }
@@ -68,6 +73,12 @@ public class PostsService {
     }catch(IOException e){
             throw new RuntimeException("Failed to upload file", e);
         }
+    }
+
+
+    public List<PostResponse> getMostLikedPosts() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getMostLikedPosts'");
     }
     
    

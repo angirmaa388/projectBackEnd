@@ -21,6 +21,5 @@ public class PostResponse {
    private String fileType;
    private String userName;
    private String postedDateTime;
-
-    
+   private Long likesAmount;
 }

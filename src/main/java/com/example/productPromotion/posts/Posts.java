@@ -68,6 +68,10 @@ public class Posts {
     @OneToMany(mappedBy = "posts")
     @JsonManagedReference
     private List<PostComment> postComments;
+
+    @OneToMany(mappedBy = "posts")
+    @JsonManagedReference
+    private List<Likes> likes;
     
     //Contructors 
 

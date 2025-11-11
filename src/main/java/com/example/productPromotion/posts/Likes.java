@@ -5,6 +5,8 @@
 package com.example.productPromotion.posts;
 
 import com.example.productPromotion.users.Users;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +41,7 @@ public class Likes {
     //so identified this relations
     @ManyToOne
     //here joining the column 
+     @JsonBackReference
     @JoinColumn(name = "post_id")
     private Posts posts;
     

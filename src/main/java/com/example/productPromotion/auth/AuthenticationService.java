@@ -28,12 +28,14 @@ public class AuthenticationService {
     private final TokenRepository tokenRepository;
 
     public AuthenticationResponse register(RegisterRequest request){
+       
         // here all the user register metods 
         //it will check the all the data 
         var user = Users.builder()
             .userName(request.getUserName())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
+            .status(request.getStatus())
             .role(Role.ROLE_USER)
             .build();
         repository.save(user);

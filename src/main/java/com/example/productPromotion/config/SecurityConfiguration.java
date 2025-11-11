@@ -42,9 +42,9 @@ public class SecurityConfiguration {
             auth.requestMatchers("/api/v1/auth/**", "/api/v1/users/**", "/api/v1/users/login/**")
             //permitting all the URL that allows the information
             .permitAll()
-            .requestMatchers(HttpMethod.GET, "/api/v1/posts/**", "/api/v1/likes/**", "api/v1/postComment/**")
+            .requestMatchers(HttpMethod.GET, "/api/v1/posts/**", "/api/v1/likes/**", "/api/v1/postComment/**", "/api/v1/users/**")
             .permitAll()
-            .requestMatchers(HttpMethod.POST, "/api/v1/posts/**", "/api/v1/likes/**", "api/v1/postComment/**").authenticated()
+            .requestMatchers(HttpMethod.POST, "/api/v1/posts/**", "/api/v1/likes/**", "/api/v1/postComment/**").authenticated()
             .anyRequest()
             .authenticated())
             .sessionManagement(session ->
