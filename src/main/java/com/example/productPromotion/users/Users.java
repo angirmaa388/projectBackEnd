@@ -5,6 +5,8 @@
 package com.example.productPromotion.users;
 import com.example.productPromotion.config.Token;
 import com.example.productPromotion.posts.Posts;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -68,10 +70,11 @@ public class Users implements UserDetails{
     @Column(name = "user_status")
     private String status;
     
-    
+    @JsonIgnore
     @OneToMany(mappedBy="users")
     private List<Posts>posts; 
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy="users")
     private List<Token>token; 
     

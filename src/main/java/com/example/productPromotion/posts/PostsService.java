@@ -76,10 +76,10 @@ public class PostsService {
     }
 
 
-    public List<PostResponse> getMostLikedPosts() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMostLikedPosts'");
-    }
+    public List<Posts> searchPosts(String keyword) {
+        return postsRepository.searchPosts(keyword);
+
+       }
     
    
 } 

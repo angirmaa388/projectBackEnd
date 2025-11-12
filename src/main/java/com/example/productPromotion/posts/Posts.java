@@ -6,6 +6,7 @@ package com.example.productPromotion.posts;
 
 import com.example.productPromotion.users.Users;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -61,14 +62,17 @@ public class Posts {
     //so identified this relations
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
+    @JsonIgnore
     //here joining the column 
     @JoinColumn(name = "user_id")
     private Users users;
     
     @OneToMany(mappedBy = "posts")
+    @JsonIgnore
     @JsonManagedReference
+       
     private List<PostComment> postComments;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "posts")
     @JsonManagedReference
     private List<Likes> likes;

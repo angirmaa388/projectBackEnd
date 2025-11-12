@@ -8,6 +8,8 @@ package com.example.productPromotion.posts;
 import java.util.List;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -15,7 +17,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface PostsRepository 
         extends JpaRepository <Posts, Long>  {
-    
-    
-    
+
+       @Query("SELECT p FROM Posts p JOIN p.users u " +
+       " WHERE LOWER(p.postText) LIKE LOWER(CONCAT('%', :keyword, '%')) " + 
+       " OR LOWER(u.userName) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+        List<Posts> searchPosts(@Param("keyword")String keyword);
 }
