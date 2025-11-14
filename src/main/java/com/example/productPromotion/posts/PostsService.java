@@ -76,9 +76,18 @@ public class PostsService {
     }
 
 
-    public List<Posts> searchPosts(String keyword) {
-        return postsRepository.searchPosts(keyword);
-
+    public List<PostResponse> searchPosts(String keyword) {
+         return postsRepository.searchPosts(keyword).stream().map(posts -> new PostResponse(
+                posts.getPostId(),
+                posts.getPostText(),
+                posts.getFilePath(),
+                posts.getFileType(),
+                posts.getUsers().getUserName(),
+                posts.getPostedDateTime() != null ? posts.getPostedDateTime().toString(): null,
+                likesService.likesAmount(posts.getPostId())
+            ))
+            .toList();
+        
        }
     
    

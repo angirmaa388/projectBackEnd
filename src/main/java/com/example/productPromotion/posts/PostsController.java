@@ -75,9 +75,9 @@ public class PostsController {
 	}
 
     @GetMapping("/search")
-        public ResponseEntity<List<Posts>> searchPosts(@RequestParam String keyword) {
+        public ResponseEntity<List<PostResponse>> searchPosts(@RequestParam String keyword) {
             System.out.println("searching with" + keyword);
-            List<Posts> posts = postsService.searchPosts(keyword);
+            List<PostResponse> posts = postsService.searchPosts(keyword);
             return new ResponseEntity<>(posts, HttpStatus.OK);  
    
         }
