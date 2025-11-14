@@ -22,4 +22,5 @@ public class PostResponse {
    private String userName;
    private String postedDateTime;
    private Long likesAmount;
+   private String status;
 }

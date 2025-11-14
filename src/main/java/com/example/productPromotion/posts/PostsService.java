@@ -44,7 +44,9 @@ public class PostsService {
                 posts.getFileType(),
                 posts.getUsers().getUserName(),
                 posts.getPostedDateTime() != null ? posts.getPostedDateTime().toString(): null,
-                likesService.likesAmount(posts.getPostId())
+                likesService.likesAmount(posts.getPostId()),
+                posts.getUsers().getStatus()
+
             ))
             .toList();
         }
@@ -84,7 +86,8 @@ public class PostsService {
                 posts.getFileType(),
                 posts.getUsers().getUserName(),
                 posts.getPostedDateTime() != null ? posts.getPostedDateTime().toString(): null,
-                likesService.likesAmount(posts.getPostId())
+                likesService.likesAmount(posts.getPostId()),
+                posts.getUsers().getStatus()
             ))
             .toList();
         
