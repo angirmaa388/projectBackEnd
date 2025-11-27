@@ -27,27 +27,6 @@ public class UsersService {
             return usersRepository.findAll();
         }
 
-    public void addNewUsers(Users user) {
-        Optional<Users> usersByEmail = usersRepository
-                .findUsersByEmail(user.getEmail());
-        if(usersByEmail.isPresent()){
-            throw new IllegalStateException("email already used");
-        }
-        
-        usersRepository.save(user);
-        
-        
-        }
-
-    public void deleteUsers(Long usersId) {
-        boolean exists = usersRepository.existsById(usersId);
-        if(!exists){
-            throw new IllegalStateException("id does not exists");
-        }
-        usersRepository.deleteById(usersId);
-        }
-
-
     public Optional<Users> getUserById(Long userId) {
         return usersRepository.findById(userId);
 

@@ -54,19 +54,7 @@ public class UsersController {
         user.getEmail(), 
         user.getStatus());
 }
-   
 
-    
-    @PostMapping
-        public void registerNewUsers(@RequestBody @Valid Users user){
-            System.out.println("Email:" + user.getEmail());
-             usersService.addNewUsers(user);
-        }
-    @DeleteMapping(path = "{usersId}")
-    public void deleteUser(@PathVariable("usersId") Long usersId){
-        usersService.deleteUsers(usersId);
-        
-    }
     
 
 }
