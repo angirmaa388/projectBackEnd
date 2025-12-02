@@ -48,6 +48,7 @@ public class PostCommentController {
 	public ResponseEntity<String> newPostComment(
         @RequestParam Long postId, 
         @RequestParam Long userId, 
+        
         @RequestParam String commentText){
         Posts post = postsRepository.findById(postId).orElse(null);
         Users user = usersRepository.findById(userId).orElse(null);
@@ -60,4 +61,5 @@ public class PostCommentController {
          return ResponseEntity.ok("post submitted");
 
 	}
+    
 }

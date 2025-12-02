@@ -54,6 +54,10 @@ public class PostsController {
                 @RequestParam(value = "file",required = false) MultipartFile file,
                 @RequestParam(value = "userId") Long userId,
 			Posts posts) {
+
+        if((postText==null||postText.trim().isEmpty())&&(file == null && file.isEmpty())){
+            return ResponseEntity.badRequest().body("post form can not be empty!");
+        }
        
           if(file != null && !file.isEmpty()){
         String fileUrl= postsService.uploadFile(file, file.getOriginalFilename());

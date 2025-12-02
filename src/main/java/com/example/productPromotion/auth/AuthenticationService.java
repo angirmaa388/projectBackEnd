@@ -27,7 +27,13 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final TokenRepository tokenRepository;
 
-    public AuthenticationResponse register(RegisterRequest request){
+    public AuthenticationResponse register(RegisterRequest request) {
+
+        var registeredUser = repository.findByEmail(request.getEmail());
+        if (registeredUser.isPresent()) {
+            throw new IllegalStateException("Email is already used");
+            
+        }
        
         // here all the user register metods 
         //it will check the all the data 
