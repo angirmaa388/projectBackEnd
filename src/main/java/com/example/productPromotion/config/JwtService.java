@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoder;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+
 /**
  *
  * @author angirmaa
  */
+
 @Service
 public class JwtService {
 
@@ -62,7 +62,7 @@ public class JwtService {
         .compact();
 
     }
-    //it will validate the token ]
+    //it will validate the token 
     public boolean isTokenValid(String token, UserDetails userDetails ){
         final String userName = extractUserName(token);
         boolean isTokenValid = tokenRepository.findByToken(token)

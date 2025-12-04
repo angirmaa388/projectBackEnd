@@ -43,9 +43,9 @@ public class SecurityConfiguration {
             //permitting all the URL that allows the information
             .permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/posts/**", "/api/v1/likes/**", "/api/v1/postComment/**", "/api/v1/users/**")
-            .permitAll()
+            .permitAll()  //permitting all the get method URL that allows the information
             .requestMatchers(HttpMethod.POST, "/api/v1/posts/**", "/api/v1/likes/**", "/api/v1/postComment/**").authenticated()
-            .anyRequest()
+            .anyRequest() //permitting all the post method URL that allows the information
             .authenticated())
             .sessionManagement(session ->
             session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -73,6 +73,7 @@ public class SecurityConfiguration {
         configuration.setAllowedMethods(List.of("GET","POST", "PUT", "DELETE", "PATCH"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
+        //it allowes all the method 
 
         UrlBasedCorsConfigurationSource source =new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

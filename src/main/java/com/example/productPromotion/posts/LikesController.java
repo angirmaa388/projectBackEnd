@@ -20,8 +20,10 @@ import com.example.productPromotion.users.UsersRepository;
 
 
 @CrossOrigin(origins={"http://127.0.0.1:6500", "http://localhost:6500"})
+//connection for the http 
 @RestController
 @RequestMapping(path = "api/v1/likes")
+//request mapping path 
 
 public class LikesController {
 
@@ -43,12 +45,13 @@ public class LikesController {
     @GetMapping
         public List<Likes> getLikes() {
            return likesService.getLikes();
-        }
+        }//it will send the likes to the front end 
 
      @PostMapping("/newLikes")
 	public Likes newLikes(@RequestParam Long postId, @RequestParam Long userId){
         Posts post = postsRepository.findById(postId).orElse(null);
         Users user = usersRepository.findById(userId).orElse(null);
+        //new likes will get the user id and post id then it will set to the data 
         Likes likes = new Likes();
         likes.setPosts(post);
         likes.setUsers(user);
@@ -57,6 +60,7 @@ public class LikesController {
 	}
 
      @GetMapping("/likesCount")
+     //it will send to the like amount to the each post 
 	public Long likesAmount(@RequestParam Long postsId){
                 System.out.println("PostId:" + postsId);
          return likesService.likesAmount(postsId);

@@ -33,7 +33,8 @@ public class AuthenticationService {
         if (registeredUser.isPresent()) {
             throw new IllegalStateException("Email is already used");
             
-        }
+        } //when user create account if the email is already used 
+        //it will find the email and throw error message 
        
         // here all the user register metods 
         //it will check the all the data 
@@ -44,12 +45,13 @@ public class AuthenticationService {
             .status(request.getStatus())
             .role(Role.ROLE_USER)
             .build();
-        repository.save(user);
+        repository.save(user); // it finishes taking all the information frrom form 
+                            //it will save to the repository 
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
             .token(jwtToken)
             .userId(user.getUserId())
-            .build();
+            .build(); // it will return token for the user 
     }
     public AuthenticationResponse authenticate(AuthenticationRequest request){
         authenticationManager.authenticate(
@@ -60,11 +62,12 @@ public class AuthenticationService {
                 request.getPassword()
                 )
         );
-        //if the user name and password correct 
-        //it create a token and send it back 
+        //it will take the email and password
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
+        //it will check the user information using their email, if there no registered email it will give error
         //when it gets the user it will generate the user token 
+        //if the user name and password correct 
         //and send the authentication response 
 
                 var jwtToken = jwtService.generateToken(user);
@@ -76,6 +79,8 @@ public class AuthenticationService {
             .token(jwtToken)
             .userId(user.getUserId())
             .build();
+            //if the user email and password correct 
+            // it create a token and send it back 
         
     }
     private void revokeAllTokenByUser(Users user) {
@@ -83,7 +88,7 @@ public class AuthenticationService {
         if(!validTokenListByUser.isEmpty()){
             validTokenListByUser.forEach(t->{
                 t.setLoggedOut(true);
-            });
+            }); 
         }
         tokenRepository.saveAll(validTokenListByUser);
     }
@@ -94,6 +99,7 @@ public class AuthenticationService {
         token.setUsers(user);
         tokenRepository.save(token);
     }
-
+// if user log out it will revoke the token and 
+//if the user hasn't logged out token will remain 24 hours 
 
 }

@@ -21,7 +21,7 @@ public class UsersConfig {
     CommandLineRunner commandLineRunner(UsersRepository repository){
         return args -> {
             
-            if(repository.count() == 0) {
+            if(repository.count() == 0) { //test for checking data 
         //     Users Angirmaa = new Users(
                     
         //             "Angirmaa",

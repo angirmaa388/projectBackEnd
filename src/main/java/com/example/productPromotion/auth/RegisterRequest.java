@@ -14,6 +14,5 @@ public class RegisterRequest {
     private String email;
     private String password;
     private String status;
-    
-
 }
+//in this class taking the registration request 

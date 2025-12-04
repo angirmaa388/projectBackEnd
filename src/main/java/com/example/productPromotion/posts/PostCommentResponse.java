@@ -16,5 +16,5 @@ public class PostCommentResponse {
    private String commentText;
    private String userName;
    private String commentedDateTime;
-
+   //this class will help to return the data in JSON format 
 }

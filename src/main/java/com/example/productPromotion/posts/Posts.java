@@ -70,12 +70,13 @@ public class Posts {
     @OneToMany(mappedBy = "posts")
     @JsonIgnore
     @JsonManagedReference
-       
+      //One user can have many posts  
     private List<PostComment> postComments;
     @JsonIgnore
     @OneToMany(mappedBy = "posts")
     @JsonManagedReference
     private List<Likes> likes;
+    //one user can have many postcomments and likes 
     
     //Contructors 
 

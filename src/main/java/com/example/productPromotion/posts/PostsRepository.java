@@ -22,4 +22,5 @@ public interface PostsRepository
        " WHERE LOWER(p.postText) LIKE LOWER(CONCAT('%', :keyword, '%')) " + 
        " OR LOWER(u.userName) LIKE LOWER(CONCAT('%', :keyword, '%'))")
         List<Posts> searchPosts(@Param("keyword")String keyword);
+        //this query will help to find the key word post from post database 
 }

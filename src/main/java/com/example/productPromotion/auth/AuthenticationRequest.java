@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class AuthenticationRequest {
     private String email;
     String password;
-
-}
+ 
+} //Athenticate request will take info eamail and password 

@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface LikesRepository 
         extends JpaRepository <Likes, Long>  {
+                //this class will allow to server connect to data base 
 
         Long countByPosts_PostId(Long postId);
     

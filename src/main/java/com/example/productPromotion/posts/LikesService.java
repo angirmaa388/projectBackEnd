@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.example.productPromotion.posts;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,15 +24,16 @@ public class LikesService {
 
         public List<Likes> getLikes() {
             return likesRepository.findAll();
+            //return all likes from database
         }
 
         public Long likesAmount(Long postId) {
             return likesRepository.countByPosts_PostId(postId);
-
+            //count the likes by post 
              }
 
         public Likes addNewLikes(Likes likes) {
             return likesRepository.save(likes);
-            }
+            }//saves new likes 
     
 }

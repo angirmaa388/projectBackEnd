@@ -20,8 +20,10 @@ import com.example.productPromotion.users.UsersRepository;
  */
 
 @CrossOrigin(origins={"http://127.0.0.1:6500", "http://localhost:6500"})
+//connection for the http 
 @RestController
 @RequestMapping(path = "api/v1/postComment")
+//request mapping path 
 
 public class PostCommentController {
     private final PostCommentService postCommentService;
@@ -42,17 +44,19 @@ public class PostCommentController {
     @GetMapping("/getPostComment")
         public List<PostCommentResponse> gePostComments(@RequestParam Long postId) {
            return postCommentService.getPostComment(postId);
-        }
+        }//it will send the comments to the front end 
 
      @PostMapping("/newComment")
 	public ResponseEntity<String> newPostComment(
         @RequestParam Long postId, 
         @RequestParam Long userId, 
+        //it will take the post id and user id 
         
         @RequestParam String commentText){
         Posts post = postsRepository.findById(postId).orElse(null);
         Users user = usersRepository.findById(userId).orElse(null);
         PostComment postComment = new PostComment();
+        //after it finds the postid and user id it will store the new comment to the data base 
         postComment.setCommentText(commentText);
         postComment.setPosts(post);
         postComment.setUsers(user);

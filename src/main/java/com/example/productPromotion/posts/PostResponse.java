@@ -23,4 +23,5 @@ public class PostResponse {
    private String postedDateTime;
    private Long likesAmount;
    private String status;
+   //this class will help to return the data in JSON format 
 }

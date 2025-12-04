@@ -21,7 +21,10 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "token")
+
 public class Token {
+    //this class will help store the token string 
+    //store the logged out and token id 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
@@ -40,13 +43,12 @@ public class Token {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users users;
-
+    //it will connect to the user id so one user can have many token 
     //Constructor
 
     public Token() {
        
     }
-
     public Token(String token, boolean loggedOut, LocalDateTime logoutDateTime, Users users) {
         this.token = token;
         this.loggedOut = loggedOut;
@@ -94,11 +96,6 @@ public class Token {
 
     public void setUsers(Users users) {
         this.users = users;
-    }
-    
-    
-    
-    
-   
+    }  
 
 }

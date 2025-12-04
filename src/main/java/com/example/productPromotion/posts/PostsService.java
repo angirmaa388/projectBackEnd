@@ -65,13 +65,8 @@ public class PostsService {
                                             Map.of("public_id", fileName,
                                             "resource_type", "auto")
                                             );
-        //     String OriginalUrl=(String) result.get("secure_url");
-        
-        //     // String resizeUrl=OriginalUrl.replace("/upload/", "/upload/w_600,h_800,c_fill/");
-
-        // return resizeUrl;
         return (String) result.get("secure_url");
-
+    //this will upload the file to the cloudinary 
     }catch(IOException e){
             throw new RuntimeException("Failed to upload file", e);
         }
@@ -88,7 +83,7 @@ public class PostsService {
                 posts.getPostedDateTime() != null ? posts.getPostedDateTime().toString(): null,
                 likesService.likesAmount(posts.getPostId()),
                 posts.getUsers().getStatus()
-            ))
+            )) //it will take the key word post then put it to the list 
             .toList();
         
        }

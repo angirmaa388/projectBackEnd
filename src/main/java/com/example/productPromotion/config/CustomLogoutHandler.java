@@ -1,9 +1,7 @@
 package com.example.productPromotion.config;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
 
@@ -27,14 +25,15 @@ public class CustomLogoutHandler implements LogoutHandler{
                 if(authHeader == null || !authHeader.startsWith("Bearer ")){
                     
                     return;
-                }
+                } //it gets the header request from http then check the header Bearer 
                String jwt = authHeader.substring(7);
+            
                Token storedToken = tokenRepository.findByToken(jwt).orElse(null);
-               if(jwt!=null){
-                storedToken.setLoggedOut(true);
+               if(jwt!=null){//after it will check the token and if there is token it log out 
+                storedToken.setLoggedOut(true);// set this true 
                 tokenRepository.save(storedToken);
                }
-               SecurityContextHolder.clearContext();
+               SecurityContextHolder.clearContext();//it will remove the logged out user from log in session 
 
         }
 

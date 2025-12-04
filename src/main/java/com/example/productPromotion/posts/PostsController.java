@@ -54,33 +54,37 @@ public class PostsController {
                 @RequestParam(value = "file",required = false) MultipartFile file,
                 @RequestParam(value = "userId") Long userId,
 			Posts posts) {
+                //it will take the post id  text and file 
 
         if((postText==null||postText.trim().isEmpty())&&(file == null && file.isEmpty())){
             return ResponseEntity.badRequest().body("post form can not be empty!");
-        }
+        } //if the post and the text both null empty it will return error message
        
           if(file != null && !file.isEmpty()){
         String fileUrl= postsService.uploadFile(file, file.getOriginalFilename());
         
         posts.setFilePath(fileUrl);
-        posts.setFileType(file.getContentType());
+        posts.setFileType(file.getContentType()); 
     
         }else {
               
               posts.setFilePath(null);
               posts.setFileType(null);
-          }
+          } //if the file is not empty it will read the file type and url then set it to the data
           posts.setPostText(postText);
          Users user = usersRepository.findById(userId).orElse(null);
          posts.setUsers(user);
+         //find the user fron user repository 
          posts.setPostedDateTime(LocalDateTime.now());
          postsService.addNewPosts(posts);
          return ResponseEntity.ok("post submitted");
+         //when it finished taking sll the information it will return submitted message 
 	}
 
     @GetMapping("/search")
         public ResponseEntity<List<PostResponse>> searchPosts(@RequestParam String keyword) {
             System.out.println("searching with" + keyword);
+            //take the key word and search from the post 
             List<PostResponse> posts = postsService.searchPosts(keyword);
             return new ResponseEntity<>(posts, HttpStatus.OK);  
    

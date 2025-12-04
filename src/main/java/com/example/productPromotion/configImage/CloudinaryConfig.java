@@ -14,7 +14,8 @@ import com.cloudinary.Cloudinary;
 
 @Configuration
 public class CloudinaryConfig {
-
+    //this class will support to store the videos and images to the cloundinary 
+    //here I declared the name, api key and api secret for the cloundinary 
     @Value("${cloudinary.cloud_name}") 
     private String cloudName;
 

@@ -28,7 +28,8 @@ public class CloudinaryService {
         return (String) result.get("secure_url");
         }catch(IOException e){
             throw new RuntimeException("Failed to upload file", e);
-        }
+        }//this will upload the file to the cloudinary , it will handle the intersction between 
+        //the application and cloundinary 
     }
     
 

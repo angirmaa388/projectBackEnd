@@ -16,11 +16,13 @@ import jakarta.validation.Valid;
  * @author angirmaa
  */
 @CrossOrigin(origins={"http://127.0.0.1:6500", "http://localhost:6500"})
+// connection to the front end 
 @RestController
 @RequestMapping(path = "api/v1/auth")
 public class UserLogOutController {
 
 @PostMapping("/logOut")
+//post mapping log out if user log out it will returm log out message 
         public ResponseEntity<String> logOut(){
             return ResponseEntity.ok("successfully logged out");
             

@@ -29,7 +29,8 @@ public class PostCommentService {
                 postComment.getCommentText(),
                 postComment.getUsers().getUserName(),
                 postComment.getCommentedDateTime() != null ? postComment.getCommentedDateTime().toString(): null
-            ))
+            )) //it will get the post comments by post id and user id 
+                //then make them a list 
             .toList();
         }
 

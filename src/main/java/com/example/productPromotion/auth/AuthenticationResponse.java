@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
     private String token;
     private Long userId;
-
-
 }
+//it will give token everytime user log in and check user id 
